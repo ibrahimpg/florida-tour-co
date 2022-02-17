@@ -39,8 +39,6 @@ const FormFullCol = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: url('/poly.svg') no-repeat top center;
-  background-size: cover;
   color: #39393A;
   width: 100%;
   height: 100%;
@@ -48,6 +46,7 @@ const FormFullCol = styled.div`
 
 const FormHeader = styled.h1`
   margin-bottom: 30px;
+  line-height: 1;
 `;
 
 const FormText = styled.p`

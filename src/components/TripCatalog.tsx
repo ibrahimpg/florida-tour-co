@@ -4,17 +4,13 @@ import { VscTrash, VscEye, VscCopy } from 'react-icons/vsc';
 import Button from './Button';
 
 const TripCardOuterContainer = styled.div`
-  background: url('/widepoly.svg') no-repeat top center;
-  background-size: cover;
   width: calc(100% - 40px);
-  margin: 20px 0;
   display: flex;
   justify-content: center;
 `;
 
 const TripCardContainer = styled.div`
   display: grid;
-  margin: 20px;
   grid-gap: 20px;
   grid-template-columns: auto auto auto;
   @media only screen and (max-width: 1200px) {

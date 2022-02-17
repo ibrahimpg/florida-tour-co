@@ -1,5 +1,5 @@
 import React from 'react';
-import PageContainer from '../components/Containers';
+import { Layout, Container } from '../components/Containers';
 import TripCatalog from '../components/TripCatalog';
 
 const tripsArray = [
@@ -67,9 +67,11 @@ const tripsArray = [
 
 function Trips() {
   return (
-    <PageContainer style={{ background: "url('/wave.svg') no-repeat bottom center", backgroundSize: 'cover' }}>
-      <TripCatalog tripsArray={tripsArray} />
-    </PageContainer>
+    <Layout>
+      <Container>
+        <TripCatalog tripsArray={tripsArray} />
+      </Container>
+    </Layout>
   );
 }
 

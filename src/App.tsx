@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import { useUserStore, useUserStoreUpdate } from './context/UserContext';
 import {
   AppBar, AppBarSection, AppBarHeader, AppBarHamburger,
 } from './components/AppBar';
@@ -10,6 +11,8 @@ import Drawer from './components/Drawer';
 function App() {
   const [drawerXPos, setDrawerXPos] = useState<string>('-20vw');
   const [overlayDisplay, setOverlayDisplay] = useState<string>('none');
+  const userStore = useUserStore();
+  const userStoreUpdate = useUserStoreUpdate();
   return (
     <>
       <div>
@@ -29,6 +32,7 @@ function App() {
             <AppBarHeader>Florida Tours Trip Builder</AppBarHeader>
           </AppBarSection>
           <AppBarSection end>
+            <AppBarHeader>{userStore}</AppBarHeader>
             <Button light>Logout</Button>
           </AppBarSection>
         </AppBar>

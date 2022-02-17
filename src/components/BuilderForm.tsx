@@ -7,8 +7,8 @@ import { cities, activities, times } from '../functions/formData';
 
 function BuilderForm(): ReactElement {
   return (
-    <FormContainer style={{ margin: '20px', height: 'auto' }}>
-      <FormFullCol style={{ padding: '20px 0' }}>
+    <FormContainer style={{ height: 'auto' }}>
+      <FormFullCol>
         <FormHeader>Trip Builder</FormHeader>
         <FormText>
           Fill out all of the fields below and click the save button when you are finished.
