@@ -1,10 +1,12 @@
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
+import Button from './Button';
 
-interface AppBarProps {
+interface AppBarContainerProps {
   dark?: boolean;
 }
 
-const AppBar = styled.div<AppBarProps>`
+const AppBarContainer = styled.div<AppBarContainerProps>`
   font-family: 'Open Sans', sans-serif;
   display: flex;
   justify-content: space-between;
@@ -50,6 +52,25 @@ const AppBarHeader = styled.h1`
   margin: 0 15px;
 `;
 
-export {
-  AppBar, AppBarSection, AppBarHamburger, AppBarHeader,
-};
+interface Props {
+  openDrawer: Function;
+}
+
+function AppBar({ openDrawer }: Props): ReactElement {
+  return (
+    <AppBarContainer>
+      <AppBarSection start>
+        <AppBarHamburger onClick={() => openDrawer()}>
+          ☰
+        </AppBarHamburger>
+        <AppBarHeader>Florida Tours Trip Builder</AppBarHeader>
+      </AppBarSection>
+      <AppBarSection end>
+        <AppBarHeader>ibrahim</AppBarHeader>
+        <Button light>Logout</Button>
+      </AppBarSection>
+    </AppBarContainer>
+  );
+}
+
+export default AppBar;

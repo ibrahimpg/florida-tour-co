@@ -1,42 +1,28 @@
-import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
-import { useUserStore, useUserStoreUpdate } from './context/UserContext';
+import React from 'react';
+
 import {
-  AppBar, AppBarSection, AppBarHeader, AppBarHamburger,
-} from './components/AppBar';
-import Button from './components/Button';
-import Overlay from './components/Overlay';
-import Drawer from './components/Drawer';
+  BrowserRouter, Routes, Route, Outlet,
+} from 'react-router-dom';
+
+import Navigation from './components/Navigation';
+
+import Account from './pages/Account';
+import Trips from './pages/Trips';
+import Builder from './pages/Builder';
 
 function App() {
-  const [drawerXPos, setDrawerXPos] = useState<string>('-20vw');
-  const [overlayDisplay, setOverlayDisplay] = useState<string>('none');
-  const userStore = useUserStore();
-  const userStoreUpdate = useUserStoreUpdate();
   return (
     <>
-      <div>
-        <Overlay
-          overlayDisplay={overlayDisplay}
-          closeOverlay={() => { setDrawerXPos('-20vw'); setOverlayDisplay('none'); }}
-        />
-        <Drawer
-          drawerXPos={drawerXPos}
-          closeDrawer={() => { setDrawerXPos('-20vw'); setOverlayDisplay('none'); }}
-        />
-        <AppBar>
-          <AppBarSection start>
-            <AppBarHamburger onClick={() => { setDrawerXPos('0'); setOverlayDisplay('block'); }}>
-              ☰
-            </AppBarHamburger>
-            <AppBarHeader>Florida Tours Trip Builder</AppBarHeader>
-          </AppBarSection>
-          <AppBarSection end>
-            <AppBarHeader>{userStore}</AppBarHeader>
-            <Button light>Logout</Button>
-          </AppBarSection>
-        </AppBar>
-      </div>
+      <BrowserRouter>
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<Account />} />
+          <Route path="account" element={<Account />} />
+          <Route path="trips" element={<Trips />} />
+          <Route path="builder" element={<Builder />} />
+          <Route path="*" element={<Account />} />
+        </Routes>
+      </BrowserRouter>
       <Outlet />
     </>
   );
