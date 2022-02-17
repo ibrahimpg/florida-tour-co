@@ -1,24 +1,11 @@
 import React from 'react';
 import PageContainer from '../components/Containers';
+import BuilderForm from '../components/BuilderForm';
 
 function Builder() {
   return (
-    <PageContainer>
-      <div>
-        Builder Page
-      </div>
-      <div>
-        Builder Page
-      </div>
-      <div>
-        Builder Page
-      </div>
-      <div>
-        Builder Page
-      </div>
-      <div>
-        Builder Page
-      </div>
+    <PageContainer style={{ background: "url('/wave.svg') no-repeat bottom center", backgroundSize: 'cover' }}>
+      <BuilderForm />
     </PageContainer>
   );
 }

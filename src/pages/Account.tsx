@@ -1,11 +1,11 @@
 import React from 'react';
 import PageContainer from '../components/Containers';
-import Form from '../components/Form';
+import SignupForm from '../components/SignupForm';
 
 function Account() {
   return (
     <PageContainer>
-      <Form />
+      <SignupForm />
     </PageContainer>
   );
 }

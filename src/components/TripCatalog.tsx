@@ -3,9 +3,18 @@ import styled from 'styled-components';
 import { VscTrash, VscEye, VscCopy } from 'react-icons/vsc';
 import Button from './Button';
 
+const TripCardOuterContainer = styled.div`
+  background: url('/widepoly.svg') no-repeat top center;
+  background-size: cover;
+  width: calc(100% - 40px);
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+`;
+
 const TripCardContainer = styled.div`
   display: grid;
-  margin: 20px 0;
+  margin: 20px;
   grid-gap: 20px;
   grid-template-columns: auto auto auto;
   @media only screen and (max-width: 1200px) {
@@ -24,8 +33,8 @@ const TripCard = styled.div`
   align-items: center;
   justify-content: flex-start;
   padding: 30px 0 0 0;
-  height: 170px;
-  width: 350px;
+  height: 190px;
+  width: 300px;
   background-color: rgba(57, 57, 58, 0.94);
   position: relative;
   color: #ffffff;
@@ -60,27 +69,29 @@ interface Props {
 
 function TripCatalog({ tripsArray }: Props): ReactElement {
   return (
-    <TripCardContainer>
-      {tripsArray.map((x) => (
-        <TripCard>
-          <TripCardTitle>
-            {x.title}
-          </TripCardTitle>
-          {x.dates}
-          <TripCardButtons>
-            <Button light icon>
-              <VscTrash size="2em" />
-            </Button>
-            <Button dark icon>
-              <VscCopy size="2em" />
-            </Button>
-            <Button dark icon>
-              <VscEye size="2em" />
-            </Button>
-          </TripCardButtons>
-        </TripCard>
-      ))}
-    </TripCardContainer>
+    <TripCardOuterContainer>
+      <TripCardContainer>
+        {tripsArray.map((x) => (
+          <TripCard>
+            <TripCardTitle>
+              {x.title}
+            </TripCardTitle>
+            {x.dates}
+            <TripCardButtons>
+              <Button light icon>
+                <VscTrash size="2em" />
+              </Button>
+              <Button dark icon>
+                <VscCopy size="2em" />
+              </Button>
+              <Button dark icon>
+                <VscEye size="2em" />
+              </Button>
+            </TripCardButtons>
+          </TripCard>
+        ))}
+      </TripCardContainer>
+    </TripCardOuterContainer>
   );
 }
 

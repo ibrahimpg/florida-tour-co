@@ -67,7 +67,7 @@ const tripsArray = [
 
 function Trips() {
   return (
-    <PageContainer>
+    <PageContainer style={{ background: "url('/wave.svg') no-repeat bottom center", backgroundSize: 'cover' }}>
       <TripCatalog tripsArray={tripsArray} />
     </PageContainer>
   );
