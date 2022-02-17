@@ -6,8 +6,6 @@ import Drawer from './Drawer';
 function Navigation() {
   const [drawerXPos, setDrawerXPos] = useState<string>('-20vw');
   const [overlayDisplay, setOverlayDisplay] = useState<string>('none');
-  // const userStore = useUserStore();
-  // const userStoreUpdate = useUserStoreUpdate();
   return (
     <>
       <Overlay
