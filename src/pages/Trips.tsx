@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Layout, Container } from '../components/Containers';
 import TripCatalog from '../components/TripCatalog';
 
@@ -66,6 +66,17 @@ const tripsArray = [
 ];
 
 function Trips() {
+  useEffect(() => {
+    const fetchTrips = async () => {
+      const url: string = `${import.meta.env.VITE_API_URL}/api/product/get`;
+      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRvdXJndWlkZSIsImlkIjoiNjIwZmExMGJmODM1NzllMzdlYzFhOTM3IiwiaWF0IjoxNjQ1MjU0MDgxLCJleHAiOjE2NDUyNjg0ODF9.uhavmhI_PAlNixmIWe1VIh7TxHJT5iVE-oRL3wmFMWk';
+      const response = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+      const jsonRes = await response.json();
+      console.log(jsonRes);
+      return response;
+    };
+    fetchTrips();
+  }, []);
   return (
     <Layout>
       <Container>
