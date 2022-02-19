@@ -25,11 +25,12 @@ const TripCard = styled.div`
   border-radius: 10px;
   text-align: center;
   display: flex;
+  font-size: 15px;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 30px 0 0 0;
-  height: 190px;
+  padding: 30px 15px 0 15px;
+  height: 210px;
   width: 300px;
   background-color: rgba(57, 57, 58, 0.94);
   position: relative;
@@ -38,6 +39,7 @@ const TripCard = styled.div`
 
 const TripCardTitle = styled.h2`
   font-size: 20px;
+  margin-bottom: 5px;
 `;
 
 const TripCardButtons = styled.div`
@@ -54,33 +56,40 @@ const TripCardButtons = styled.div`
 `;
 
 interface tripItem {
-  id: string;
-  title: string;
-  dates: string;
+  _id: string;
+  tripName: string;
+  description: string;
+  city: string;
+  activity: string;
+  time: string;
+  startDate: string;
+  endDate: string;
 }
 
 interface Props {
   tripsArray: tripItem[];
+  deleteTrip: Function;
+  viewTrip: Function;
 }
 
-function TripCatalog({ tripsArray }: Props): ReactElement {
+function TripCatalog({ tripsArray, deleteTrip, viewTrip }: Props): ReactElement {
   return (
     <TripCardOuterContainer>
       <TripCardContainer>
         {tripsArray.map((x) => (
-          <TripCard>
+          <TripCard key={x._id}>
             <TripCardTitle>
-              {x.title}
+              {x.tripName}
             </TripCardTitle>
-            {x.dates}
+            {x.description.length > 50 ? `${x.description.slice(0, 50)}...` : x.description}
             <TripCardButtons>
-              <Button light icon>
+              <Button light icon onClick={() => deleteTrip(x._id)}>
                 <VscTrash size="2em" />
               </Button>
               <Button dark icon>
                 <VscCopy size="2em" />
               </Button>
-              <Button dark icon>
+              <Button dark icon onClick={() => viewTrip(x._id)}>
                 <VscEye size="2em" />
               </Button>
             </TripCardButtons>

@@ -8,7 +8,6 @@ interface DrawerProps {
 
 const DrawerMenu = styled.div<DrawerProps>`
   z-index: 6;
-  border: 1px solid red;
   text-transform: uppercase;
   font-family: 'Open Sans', sans-serif;
   letter-spacing: 1.88px;
@@ -21,7 +20,7 @@ const DrawerMenu = styled.div<DrawerProps>`
   height: 100vh;
   width: 20vw;
   background-color: #ffffff;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: -20vw;
 `;

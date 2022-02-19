@@ -15,11 +15,10 @@ function BuilderForm(): ReactElement {
   };
 
   const saveTrip = async () => {
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRvdXJndWlkZSIsImlkIjoiNjIwZmExMGJmODM1NzllMzdlYzFhOTM3IiwiaWF0IjoxNjQ1MjU0MDgxLCJleHAiOjE2NDUyNjg0ODF9.uhavmhI_PAlNixmIWe1VIh7TxHJT5iVE-oRL3wmFMWk';
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRvdXJndWlkZSIsImlkIjoiNjIwZmExMGJmODM1NzllMzdlYzFhOTM3IiwiaWF0IjoxNjQ1MjgwOTkyLCJleHAiOjE2NDUyOTUzOTJ9.LxDRHynh8g7_oQXBUGO2sn2dldy8aEAqo8YIAof83bw';
     const url: string = `${import.meta.env.VITE_API_URL}/api/product/add`;
     const headers = { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' };
     const body = JSON.stringify(inputs);
-    console.log(body);
     const response = await fetch(url, { method: 'POST', headers, body });
     console.log(response);
   };
