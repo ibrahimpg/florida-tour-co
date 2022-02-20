@@ -50,6 +50,9 @@ const AppBarHamburger = styled.div`
 const AppBarHeader = styled.h1`
   font-size: 24px;
   margin: 0 15px;
+  @media only screen and (max-width: 735px) {
+    display: none;
+  }
 `;
 
 interface Props {

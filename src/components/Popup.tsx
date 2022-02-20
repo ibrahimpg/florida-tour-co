@@ -11,13 +11,20 @@ const PopupLayout = styled.div`
   text-align: center;
   font-size: 16px;
   transition: 0.3s;
-  height: 50vh;
+  height: 55vh;
   width: 40vw;
   padding: 50px;
   background-color: #ffffff;
   position: fixed;
-  top: 25vh;
+  top: 22vh;
   left: -20vw;
+  @media only screen and (max-width: 735px) {
+    width: 80vw;
+  }
+`;
+
+const PopupDescription = styled.p`
+  margin: 25px 0;
 `;
 
 interface Props {
@@ -36,17 +43,18 @@ function Popup({
 }: Props): ReactElement {
   return (
     <PopupLayout style={{ left: popupXPos }}>
-      <b>{tripName}</b>
+      <b style={{ fontSize: '22px' }}>{tripName}</b>
+      <br />
       {`${city} - ${activity}`}
-      <br />
-      <br />
-      {description}
-      <br />
-      <br />
-      {startDate}
-      {' to '}
-      {endDate}
-      {` (${time})`}
+      <PopupDescription>
+        {description}
+      </PopupDescription>
+      <b>
+        {startDate}
+        {' to '}
+        {endDate}
+        {` (${time})`}
+      </b>
     </PopupLayout>
   );
 }

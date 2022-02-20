@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
-import { VscTrash, VscEye, VscCopy } from 'react-icons/vsc';
+import { VscTrash, VscEye } from 'react-icons/vsc';
 import Button from './Button';
 
 const TripCardOuterContainer = styled.div`
@@ -31,10 +31,14 @@ const TripCard = styled.div`
   justify-content: flex-start;
   padding: 30px 15px 0 15px;
   height: 210px;
-  width: 300px;
+  max-width: 300px;
+  width: 100%;
   background-color: rgba(57, 57, 58, 0.94);
   position: relative;
   color: #ffffff;
+  @media only screen and (max-width: 760px) {
+    height: 240px;
+  }
 `;
 
 const TripCardTitle = styled.h2`
@@ -85,9 +89,6 @@ function TripCatalog({ tripsArray, deleteTrip, viewTrip }: Props): ReactElement 
             <TripCardButtons>
               <Button light icon onClick={() => deleteTrip(x._id)}>
                 <VscTrash size="2em" />
-              </Button>
-              <Button dark icon>
-                <VscCopy size="2em" />
               </Button>
               <Button dark icon onClick={() => viewTrip(x._id)}>
                 <VscEye size="2em" />

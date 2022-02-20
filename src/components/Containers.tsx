@@ -5,6 +5,7 @@ const Layout = styled.div`
   background-size: cover;
   display: flex;
   justify-content: center;
+  min-height: 90vh;
 `;
 
 const Container = styled.div`

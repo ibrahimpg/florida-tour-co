@@ -1,4 +1,5 @@
 import React, { ReactElement, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 import {
   FormContainer, FormFullCol, FormHeader, FormText, FormInput, FormTextArea, FormSelect,
@@ -6,6 +7,7 @@ import {
 import { cities, activities, times } from '../functions/formData';
 
 function BuilderForm(): ReactElement {
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event: any) => {
@@ -19,8 +21,8 @@ function BuilderForm(): ReactElement {
     const url: string = `${import.meta.env.VITE_API_URL}/api/product/add`;
     const headers = { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' };
     const body = JSON.stringify(inputs);
-    const response = await fetch(url, { method: 'POST', headers, body });
-    console.log(response);
+    await fetch(url, { method: 'POST', headers, body });
+    navigate('/trips');
   };
 
   return (

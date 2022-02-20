@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { Layout, Container } from '../components/Containers';
 import TripCatalog from '../components/TripCatalog';
 import tripsArray from '../functions/dummyData';
@@ -6,12 +6,22 @@ import Overlay from '../components/Overlay';
 import Popup from '../components/Popup';
 
 function Trips() {
-  const [popupXPos, setPopupXPos] = useState<string>('-50vw');
+  const currentWidth = window.innerWidth;
+  let unopenedPosition: string;
+
+  if (currentWidth > 735) {
+    unopenedPosition = '-50vw';
+  } else {
+    unopenedPosition = '-80vw';
+  }
+
+  const [popupXPos, setPopupXPos] = useState<string>('-80vw');
   const [overlayDisplay, setOverlayDisplay] = useState<string>('none');
   const [activeTrip, setActiveTrip] = useState<any>([]);
   const [trips, setTrips] = useState(tripsArray);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    setPopupXPos(unopenedPosition);
     const fetchTrips = async () => {
       const url: string = `${import.meta.env.VITE_API_URL}/api/product/get`;
       const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRvdXJndWlkZSIsImlkIjoiNjIwZmExMGJmODM1NzllMzdlYzFhOTM3IiwiaWF0IjoxNjQ1MjgwOTkyLCJleHAiOjE2NDUyOTUzOTJ9.LxDRHynh8g7_oQXBUGO2sn2dldy8aEAqo8YIAof83bw';
@@ -56,7 +66,7 @@ function Trips() {
       )}
       <Overlay
         overlayDisplay={overlayDisplay}
-        closeOverlay={() => { setPopupXPos('-50vw'); setOverlayDisplay('none'); }}
+        closeOverlay={() => { setPopupXPos(unopenedPosition); setOverlayDisplay('none'); }}
       />
       <Layout>
         <Container>

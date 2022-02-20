@@ -8,6 +8,11 @@ const FormContainer = styled.div`
   height: 0;
   width: 100%;
   color: #ffffff;
+  @media only screen and (max-width: 1060px) {
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+  }
 `;
 
 const FormLeftCol = styled.div`
@@ -20,6 +25,10 @@ const FormLeftCol = styled.div`
   width: 70%;
   height: 100%;
   flex: 1;
+  @media only screen and (max-width: 1060px) {
+    width: 100%;
+    padding: 30px 15px;
+  }
 `;
 
 const FormRightCol = styled.div`
@@ -32,6 +41,10 @@ const FormRightCol = styled.div`
   color: #39393A;
   width: 30%;
   height: 100%;
+  @media only screen and (max-width: 1060px) {
+    width: 100%;
+    padding: 30px 15px;
+  }
 `;
 
 const FormFullCol = styled.div`
@@ -47,6 +60,9 @@ const FormFullCol = styled.div`
 const FormHeader = styled.h1`
   margin-bottom: 30px;
   line-height: 1;
+  @media only screen and (max-width: 1060px) {
+    line-height: 1.3;
+  }
 `;
 
 const FormText = styled.p`
@@ -115,7 +131,8 @@ const FormSelect = styled.select`
   justify-content: center;
   align-items: center;
   border: none;
-  width: 300px;
+  max-width: 300px;
+  width: 100%;
   /* border-radius: 10px; */
   border-left: 5px solid steelblue;
   padding: 10px;

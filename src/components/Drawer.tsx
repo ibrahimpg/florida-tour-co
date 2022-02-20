@@ -23,6 +23,10 @@ const DrawerMenu = styled.div<DrawerProps>`
   position: fixed;
   top: 0;
   left: -20vw;
+  @media only screen and (max-width: 735px) {
+    left: -70vw;
+    width: 70vw;
+  }
 `;
 
 const DrawerMenuItem = styled.div`
