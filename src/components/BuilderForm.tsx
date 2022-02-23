@@ -1,12 +1,15 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 import {
   FormContainer, FormFullCol, FormHeader, FormText, FormInput, FormTextArea, FormSelect,
 } from './Inputs';
 import { cities, activities, times } from '../functions/formData';
+import { UserContext } from '../context/UserContext';
 
 function BuilderForm(): ReactElement {
+  const { token } = useContext(UserContext)!;
+
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({});
 
@@ -17,7 +20,6 @@ function BuilderForm(): ReactElement {
   };
 
   const saveTrip = async () => {
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRvdXJndWlkZSIsImlkIjoiNjIwZmExMGJmODM1NzllMzdlYzFhOTM3IiwiaWF0IjoxNjQ1MjgwOTkyLCJleHAiOjE2NDUyOTUzOTJ9.LxDRHynh8g7_oQXBUGO2sn2dldy8aEAqo8YIAof83bw';
     const url: string = `${import.meta.env.VITE_API_URL}/api/product/add`;
     const headers = { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' };
     const body = JSON.stringify(inputs);

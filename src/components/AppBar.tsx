@@ -1,6 +1,7 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useContext } from 'react';
 import styled from 'styled-components';
 import Button from './Button';
+import { UserContext } from '../context/UserContext';
 
 interface AppBarContainerProps {
   dark?: boolean;
@@ -60,17 +61,21 @@ interface Props {
 }
 
 function AppBar({ openDrawer }: Props): ReactElement {
+  const { username } = useContext(UserContext)!;
+
   return (
     <AppBarContainer>
       <AppBarSection start>
+        {username && (
         <AppBarHamburger onClick={() => openDrawer()}>
           ☰
         </AppBarHamburger>
+        )}
         <AppBarHeader>Florida Tours Trip Builder</AppBarHeader>
       </AppBarSection>
       <AppBarSection end>
-        <AppBarHeader>ibrahim</AppBarHeader>
-        <Button light>Logout</Button>
+        <AppBarHeader>{username}</AppBarHeader>
+        {username && <Button light>Logout</Button>}
       </AppBarSection>
     </AppBarContainer>
   );

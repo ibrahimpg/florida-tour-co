@@ -1,11 +1,14 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect, useState, useContext } from 'react';
 import { Layout, Container } from '../components/Containers';
 import TripCatalog from '../components/TripCatalog';
 import tripsArray from '../functions/dummyData';
 import Overlay from '../components/Overlay';
 import Popup from '../components/Popup';
+import { UserContext } from '../context/UserContext';
 
 function Trips() {
+  const { token } = useContext(UserContext)!;
+
   const currentWidth = window.innerWidth;
   let unopenedPosition: string;
 
@@ -24,7 +27,6 @@ function Trips() {
     setPopupXPos(unopenedPosition);
     const fetchTrips = async () => {
       const url: string = `${import.meta.env.VITE_API_URL}/api/product/get`;
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRvdXJndWlkZSIsImlkIjoiNjIwZmExMGJmODM1NzllMzdlYzFhOTM3IiwiaWF0IjoxNjQ1MjgwOTkyLCJleHAiOjE2NDUyOTUzOTJ9.LxDRHynh8g7_oQXBUGO2sn2dldy8aEAqo8YIAof83bw';
       const response = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
       if (response.status === 200) {
         const jsonRes = await response.json();
