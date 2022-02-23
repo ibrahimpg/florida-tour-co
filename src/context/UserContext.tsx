@@ -1,36 +1,56 @@
-import React, {
-  ReactElement, useState, useContext, useCallback,
-} from 'react';
+import React, { ReactNode, useState, createContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const UserContext = React.createContext<string>('ibrahim');
-const UserUpdateContext = React.createContext<Function>(() => {});
-
-interface Props {
-  children: ReactElement | boolean;
+type UserContextType = {
+  username: string;
+  token: string;
 }
 
-function UserProvider({ children }: Props): ReactElement {
-  const [username, setUsername] = useState('ibrahim');
+type UpdateUserContextType = {
+  login: Function;
+  logout: Function;
+}
 
-  const changeUsername = useCallback((newUsername: string) => {
-    setUsername(newUsername);
-  }, [setUsername]);
+export const UserContext = createContext<UserContextType | undefined>(undefined);
+export const UpdateUserContext = createContext<UpdateUserContextType | undefined>(undefined);
+
+type Props = {
+  children: ReactNode;
+};
+
+type Inputs = {
+  newUsername: string;
+  password: string;
+};
+
+export function UserProvider({ children }: Props) {
+  const navigate = useNavigate();
+
+  const [username, setUsername] = useState('');
+  const [token, setToken] = useState('');
+
+  const login = async (inputs: Inputs) => {
+    const url: string = `${import.meta.env.VITE_API_URL}/api/user/login`;
+    const headers = { 'Content-Type': 'application/json' };
+    const body = JSON.stringify(inputs);
+    const response = await fetch(url, { method: 'POST', headers, body });
+    const jsonRes = await response.json();
+    setUsername(jsonRes.username);
+    setToken(jsonRes.token);
+    navigate('/trips');
+  };
+
+  const logout = () => {
+    setUsername('');
+    setToken('');
+    navigate('/');
+  };
 
   return (
-    <UserContext.Provider value={username}>
-      <UserUpdateContext.Provider value={changeUsername}>
+    <UpdateUserContext.Provider value={{ login, logout }}>
+      <UserContext.Provider value={{ username, token }}>
         {children}
-      </UserUpdateContext.Provider>
-    </UserContext.Provider>
+      </UserContext.Provider>
+    </UpdateUserContext.Provider>
   );
 }
-
-function useUserStore() {
-  return useContext(UserContext);
-}
-
-function useUserStoreUpdate() {
-  return useContext(UserUpdateContext);
-}
-
-export { UserProvider, useUserStore, useUserStoreUpdate };

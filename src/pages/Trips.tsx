@@ -39,7 +39,6 @@ function Trips() {
   const deleteTrip = async (id: string) => {
     setTrips((currentTrips) => currentTrips.filter((x) => x._id !== id));
     const url: string = `${import.meta.env.VITE_API_URL}/api/product/delete`;
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRvdXJndWlkZSIsImlkIjoiNjIwZmExMGJmODM1NzllMzdlYzFhOTM3IiwiaWF0IjoxNjQ1MjgwOTkyLCJleHAiOjE2NDUyOTUzOTJ9.LxDRHynh8g7_oQXBUGO2sn2dldy8aEAqo8YIAof83bw';
     const headers = { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' };
     const body = JSON.stringify({ productId: id });
     await fetch(url, { method: 'DELETE', headers, body });

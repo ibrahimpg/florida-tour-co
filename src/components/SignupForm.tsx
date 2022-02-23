@@ -1,17 +1,40 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState, useContext } from 'react';
 import Button from './Button';
 import {
   FormContainer, FormLeftCol, FormRightCol, FormHeader, FormText, FormInput,
 } from './Inputs';
+import { UpdateUserContext } from '../context/UserContext';
 
 function SignupForm(): ReactElement {
+  const [inputs, setInputs] = useState({});
+  const { login } = useContext(UpdateUserContext)!;
+
+  const handleChange = (event: any) => {
+    const { name } = event.target;
+    const { value } = event.target;
+    setInputs((values) => ({ ...values, [name]: value }));
+  };
+
+  const userLogin = () => {
+    login(inputs);
+    const usernameField = document.getElementById('username') as HTMLInputElement;
+    const passwordField = document.getElementById('password') as HTMLInputElement;
+    usernameField.value = '';
+    passwordField.value = '';
+  };
+
+  const notAvailable = () => {
+    // eslint-disable-next-line no-alert
+    alert('This functionality does not exist on the demo version of this app.');
+  };
+
   return (
     <FormContainer>
       <FormLeftCol>
         <FormHeader>Login To Your Florida Tours Account</FormHeader>
-        <FormInput type="text" placeholder="Email Address" />
-        <FormInput type="password" placeholder="Password" />
-        <Button dark>Log In</Button>
+        <FormInput type="text" name="username" id="username" onChange={handleChange} placeholder="Username" />
+        <FormInput type="password" name="password" id="password" onChange={handleChange} placeholder="Password" />
+        <Button dark onClick={() => userLogin()}>Log In</Button>
       </FormLeftCol>
       <FormRightCol>
         <FormHeader>Register</FormHeader>
@@ -21,7 +44,7 @@ function SignupForm(): ReactElement {
         </FormText>
         <FormInput type="text" placeholder="Registration ID" />
         <FormInput type="text" placeholder="Desired Username" />
-        <Button light>Submit</Button>
+        <Button light onClick={() => notAvailable()}>Submit</Button>
       </FormRightCol>
     </FormContainer>
   );

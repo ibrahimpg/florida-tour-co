@@ -50,7 +50,6 @@ function Drawer({ closeDrawer, drawerXPos }: Props): ReactElement {
   const navigate = useNavigate();
   return (
     <DrawerMenu id="drawerMenu" style={{ left: drawerXPos }}>
-      <DrawerMenuItem onClick={() => { navigate('/account'); closeDrawer(false); }}>Account</DrawerMenuItem>
       <DrawerMenuItem onClick={() => { navigate('/trips'); closeDrawer(false); }}>Trips</DrawerMenuItem>
       <DrawerMenuItem onClick={() => { navigate('/builder'); closeDrawer(false); }}>Builder</DrawerMenuItem>
     </DrawerMenu>
