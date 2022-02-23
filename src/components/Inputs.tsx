@@ -80,7 +80,7 @@ const FormInput = styled.input`
   max-width: 300px;
   width: 100%;
   /* border-radius: 10px; */
-  border-left: 5px solid steelblue;
+  border-left: 7px solid hsl(0, 59%, 54%);
   padding: 10px;
   margin-bottom: 30px;
   border-radius: 3px;
@@ -89,7 +89,7 @@ const FormInput = styled.input`
   background-color: rgba(57, 57, 58, 1);
   :focus {
     outline: none;
-    border-left: 5px solid #cf4343;
+    border-left: 7px solid hsl(0, 59%, 62%);
   }
   ::placeholder {
     color: #ffffff;
@@ -109,7 +109,7 @@ const FormTextArea = styled.textarea`
   max-width: 300px;
   width: 100%;
   /* border-radius: 10px; */
-  border-left: 5px solid steelblue;
+  border-left: 7px solid hsl(0, 59%, 54%);
   padding: 10px;
   margin-bottom: 30px;
   border-radius: 3px;
@@ -118,7 +118,7 @@ const FormTextArea = styled.textarea`
   background-color: rgba(57, 57, 58, 1);
   :focus {
     outline: none;
-    border-left: 5px solid #cf4343;
+    border-left: 7px solid hsl(0, 59%, 62%);
   }
   ::placeholder {
     color: #ffffff;
@@ -134,7 +134,7 @@ const FormSelect = styled.select`
   max-width: 300px;
   width: 100%;
   /* border-radius: 10px; */
-  border-left: 5px solid steelblue;
+  border-left: 7px solid hsl(0, 59%, 54%);
   padding: 10px;
   margin-bottom: 30px;
   border-radius: 3px;
@@ -143,7 +143,7 @@ const FormSelect = styled.select`
   background-color: rgba(57, 57, 58, 1);
   :focus {
     outline: none;
-    border-left: 5px solid #cf4343;
+    border-left: 7px solid hsl(0, 59%, 62%);
   }
 `;
 
