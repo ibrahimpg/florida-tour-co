@@ -15,14 +15,6 @@ function SignupForm(): ReactElement {
     setInputs((values) => ({ ...values, [name]: value }));
   };
 
-  const userLogin = () => {
-    login(inputs);
-    const usernameField = document.getElementById('username') as HTMLInputElement;
-    const passwordField = document.getElementById('password') as HTMLInputElement;
-    usernameField.value = '';
-    passwordField.value = '';
-  };
-
   const notAvailable = () => {
     // eslint-disable-next-line no-alert
     alert('This functionality does not exist on the demo version of this app.');
@@ -34,7 +26,7 @@ function SignupForm(): ReactElement {
         <FormHeader>Login To Your Florida Tours Account</FormHeader>
         <FormInput type="text" name="username" id="username" onChange={handleChange} placeholder="Username" />
         <FormInput type="password" name="password" id="password" onChange={handleChange} placeholder="Password" />
-        <Button dark onClick={() => userLogin()}>Log In</Button>
+        <Button dark onClick={() => login(inputs)}>Log In</Button>
       </FormLeftCol>
       <FormRightCol>
         <FormHeader>Register</FormHeader>

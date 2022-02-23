@@ -1,5 +1,8 @@
-import React, { ReactNode, useState, createContext } from 'react';
+import React, {
+  ReactNode, useState, createContext, useContext,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UpdateAlertContext } from './AlertContext';
 
 type UserContextType = {
   username: string;
@@ -24,20 +27,27 @@ type Inputs = {
 };
 
 export function UserProvider({ children }: Props) {
+  const setAlert = useContext(UpdateAlertContext)!;
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
   const [token, setToken] = useState('');
 
   const login = async (inputs: Inputs) => {
-    const url: string = `${import.meta.env.VITE_API_URL}/api/user/login`;
-    const headers = { 'Content-Type': 'application/json' };
-    const body = JSON.stringify(inputs);
-    const response = await fetch(url, { method: 'POST', headers, body });
-    const jsonRes = await response.json();
-    setUsername(jsonRes.username);
-    setToken(jsonRes.token);
-    navigate('/trips');
+    try {
+      const url: string = `${import.meta.env.VITE_API_URL}/api/user/login`;
+      const headers = { 'Content-Type': 'application/json' };
+      const body = JSON.stringify(inputs);
+      const response = await fetch(url, { method: 'POST', headers, body });
+      if (response.status !== 200) return setAlert('Login Failed.');
+      const jsonRes = await response.json();
+      setUsername(jsonRes.username);
+      setToken(jsonRes.token);
+      navigate('/trips');
+      return setAlert('Login Successful.');
+    } catch (err) {
+      return setAlert('Login Failed.');
+    }
   };
 
   const logout = () => {

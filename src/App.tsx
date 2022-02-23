@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   BrowserRouter, Routes, Route, Outlet,
 } from 'react-router-dom';
@@ -7,8 +7,12 @@ import Navigation from './components/Navigation';
 import Account from './pages/Account';
 import Trips from './pages/Trips';
 import Builder from './pages/Builder';
+import Alert from './components/Alert';
+import { AlertContext } from './context/AlertContext';
 
 function App() {
+  const { alertActive, alertText } = useContext(AlertContext)!;
+
   return (
     <>
       <BrowserRouter>
@@ -24,6 +28,7 @@ function App() {
         </UserProvider>
       </BrowserRouter>
       <Outlet />
+      {alertActive && <Alert text={alertText} />}
     </>
   );
 }
